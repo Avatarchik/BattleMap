@@ -21,6 +21,11 @@
 			return identifier;
 		}
 
+		public float GetRadius()
+		{
+			return 0.0f;
+		}
+
 		public void SetColour(Color Colour)
 		{
 		}

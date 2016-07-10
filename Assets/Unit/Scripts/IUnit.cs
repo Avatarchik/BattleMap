@@ -13,5 +13,7 @@
 		Color GetColour();
 
 		void DeleteSelf();
+
+		float GetRadius();
 	}
 }

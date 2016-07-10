@@ -13,7 +13,7 @@
 		private float lookSensitivity = 3f;
 
 		[HideInInspector]
-		public IMotor Motor;
+		public UnitManager Controlling;
 
 		void Start()
 		{
@@ -26,11 +26,11 @@
 				return;
 			}
 
-			IMotor cam = GetComponent<IMotor>();
+			UnitManager cam = GetComponent<UnitManager>();
 			if (cam != null)
 			{
-				Motor = cam;
-				Motor.TakeControl(transform);
+				Controlling = cam;
+				Controlling.Motor.TakeControl(transform);
 			}
 		}
 
@@ -40,12 +40,12 @@
 			GetInput();
 		}
 
-		public void TakeMotor(IMotor Motor)
+		public void TakeMotor(UnitManager Unit)
 		{
-			if (Motor == null) return;
-			this.Motor.LooseControl();
-			this.Motor = Motor;
-			this.Motor.TakeControl(transform);
+			if (Controlling == null) return;
+			Controlling.Motor.LooseControl();
+			Controlling = Unit;
+			Controlling.Motor.TakeControl(transform);
 
 		}
 
@@ -64,7 +64,7 @@
 			Vector3 velocity = (movHorizontal + movVertical + movUp).normalized * speed;
 
 			// apply movement
-			Motor.Move(velocity);
+			Controlling.Motor.Move(velocity);
 
 			if (Input.GetMouseButton(1))
 			{
@@ -80,11 +80,11 @@
 				Vector3 rotation = new Vector3(xRot, yRot, 0f) * lookSensitivity;
 
 				// apply rotation
-				Motor.Rotate(rotation);
+				Controlling.Motor.Rotate(rotation);
 			}
 			else
 			{
-				Motor.Rotate(new Vector3(0, 0, 0));
+				Controlling.Motor.Rotate(new Vector3(0, 0, 0));
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;
 			}

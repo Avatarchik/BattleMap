@@ -3,6 +3,7 @@
 	using UnityEngine;
 	using UnityEngine.Networking;
 	using Player;
+	using System;
 
 	[RequireComponent(typeof(IUnit))]
 	public class UnitMotor : NetworkBehaviour, IMotor
@@ -33,12 +34,6 @@
 		public void Rotate(Vector3 Rotation)
 		{
 			rotation = Rotation;
-		}
-
-		public override void OnStartAuthority()
-		{
-			var userInterface = FindObjectOfType<UserInterface>();
-			userInterface.AddMotor(this);
 		}
 
 		void FixedUpdate()
@@ -104,6 +99,11 @@
 		public IUnit GetUnit()
 		{
 			return GetComponent<IUnit>();
+		}
+
+		public Transform GetTransform()
+		{
+			return transform;
 		}
 	}
 

@@ -81,6 +81,7 @@
     <Compile Include="Assets\Unit\Scripts\IMotor.cs" />
     <Compile Include="Assets\Unit\Scripts\IUnit.cs" />
     <Compile Include="Assets\Unit\Scripts\Unit.cs" />
+    <Compile Include="Assets\Unit\Scripts\UnitManager.cs" />
     <Compile Include="Assets\Unit\Scripts\UnitMotor.cs" />
     <Compile Include="Assets\Unit\Scripts\UnitNamePlate.cs" />
   </ItemGroup>

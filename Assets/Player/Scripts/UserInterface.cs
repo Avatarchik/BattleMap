@@ -12,7 +12,7 @@
 	{
 		private PlayerController controller;
 		private int motorCount;
-		private IMotor controlling;
+		private UnitManager controlling;
 
 		[SerializeField]
 		private GameObject button;
@@ -23,7 +23,7 @@
 
 		private Canvas canvas;
 
-		private List<IMotor> ownedMotors = new List<IMotor>();
+		private List<UnitManager> ownedUnits = new List<UnitManager>();
 
 		[HideInInspector]
 		public static Color UnitColour = Color.cyan;
@@ -46,43 +46,44 @@
 		void Update()
 		{
 			if (!isLocalPlayer) { return; }
+			if (controlling == null) { TakeMotor(0); }
 			if (Input.GetKeyDown(KeyCode.Delete) && 
 				Input.GetKey(KeyCode.LeftShift) && 
 				Input.GetKey(KeyCode.LeftAlt))
 			{
-				IMotor temp = controlling;
+				UnitManager temp = controlling;
 				TakeMotor(0);
-				RemoveMotor(temp);
-				temp.GetUnit().DeleteSelf();
+				RemoveUnit(temp);
+				temp.Unit.DeleteSelf();
 			}
 		}
 
 		private void SetName(string Name)
 		{
-			controlling.GetUnit().SetName(Name);
+			controlling.Unit.SetName(Name);
 		}
 
 		public void SetColour(Color Colour)
 		{
 			if (!isLocalPlayer) { return; }
 			UnitColour = Colour;
-			foreach (var motor in ownedMotors)
+			foreach (var unit in ownedUnits)
 			{
-				motor.GetUnit().SetColour(Colour);
+				unit.Unit.SetColour(Colour);
 			}
 		}
 
-		public void AddMotor(IMotor Motor)
+		public void AddUnit(UnitManager Unit)
 		{
-			if (!isLocalPlayer) { return; }
-			ownedMotors.Add(Motor);
+			if (!hasAuthority) { return; }
+			ownedUnits.Add(Unit);
 			ArrangeButtons();
 		}
 
-		public void RemoveMotor(IMotor Motor)
+		public void RemoveUnit(UnitManager Unit)
 		{
-			if (!isLocalPlayer) { return; }
-			ownedMotors.Remove(Motor);
+			if (!hasAuthority) { return; }
+			ownedUnits.Remove(Unit);
 			ArrangeButtons();
 		}
 
@@ -95,13 +96,13 @@
 			buttons.Clear();
 			int pos = 25;
 			int i = 0;
-			foreach (IMotor motor in ownedMotors)
+			foreach (var unit in ownedUnits)
 			{
 				int temp = i;
 				CreateButton(button, new Vector3(Screen.width - 110, pos),
 					new Vector2(200, 30),
 					delegate { TakeMotor(temp); },
-					motor.GetUnit().GetName());
+					unit.Unit.GetName());
 				pos += 30;
 				i++;
 			}
@@ -109,13 +110,19 @@
 
 		private void TakeMotor(int Index)
 		{
-			controller.TakeMotor(ownedMotors[Index]);
-			controlling = ownedMotors[Index];
-			namerField.text = controlling.GetUnit().GetName();
+			if (ownedUnits.Count <= Index) { return; }
+			controller.TakeMotor(ownedUnits[Index]);
+			controlling = ownedUnits[Index];
+			namerField.text = controlling.Unit.GetName();
+			UnitNamePlate.Target = controlling;
 		}
 
 		private void CreateButton(GameObject prefab, Vector3 position, Vector2 size, UnityAction method, string Name)
 		{
+			if (canvas == null)
+			{
+				canvas = FindObjectOfType<Canvas>();
+			}
 			GameObject button = Instantiate(prefab);
 			button.transform.SetParent(canvas.transform, false);
 			button.transform.position = position;

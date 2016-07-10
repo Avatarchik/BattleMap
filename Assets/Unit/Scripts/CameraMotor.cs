@@ -1,11 +1,10 @@
 ﻿namespace Unit
 {
+	using System;
 	using Player;
 	using UnityEngine;
 	using UnityEngine.Networking;
 
-	[RequireComponent(typeof(IUnit))]
-	[RequireComponent(typeof(UserInterface))]
 	public class CameraMotor : NetworkBehaviour, IMotor
 	{
 		private Vector3 velocity = Vector3.zero;
@@ -27,24 +26,12 @@
 			rotation = Rotation;
 		}
 
-		void Start()
-		{
-			if (!isLocalPlayer) { return; }
-			GetComponent<UserInterface>().AddMotor(this);
-		}
-
 		void FixedUpdate()
 		{
 			if (!isLocalPlayer) { return; }
 			if (!inControl) { return; }
 			PerformMovement();
 			PerformRotation();
-		}
-
-		void OnDisable()
-		{
-			if (!isLocalPlayer) { return; }
-			GetComponent<UserInterface>().RemoveMotor(this);
 		}
 
 		private void PerformMovement()
@@ -73,11 +60,6 @@
 		public void LooseControl()
 		{
 			inControl = false;
-		}
-
-		public IUnit GetUnit()
-		{
-			return GetComponent<IUnit>();
 		}
 	}
 

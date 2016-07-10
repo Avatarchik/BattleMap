@@ -4,6 +4,7 @@
 	using UnityEngine;
 	using UnityEngine.Networking;
 	using System.Collections.Generic;
+	using System;
 
 	public class Unit : NetworkBehaviour, IUnit
 	{
@@ -12,9 +13,13 @@
 
 		private Color colour;
 
+		[SerializeField]
+		private float radius;
+
 		void Start()
 		{
 			namePlate = GetComponentInChildren<UnitNamePlate>();
+			namePlate.SetName(identifier);
 		}
 
 		public override void OnStartAuthority()
@@ -117,6 +122,11 @@
 		private void RpcDeleteSelf()
 		{
 			Destroy(gameObject);
+		}
+
+		public float GetRadius()
+		{
+			return radius;
 		}
 	}
 }

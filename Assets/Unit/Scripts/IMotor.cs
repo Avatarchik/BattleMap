@@ -11,8 +11,6 @@
 		void TakeControl(Transform Caller);
 
 		void LooseControl();
-
-		IUnit GetUnit();
 	}
 
 }

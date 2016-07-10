@@ -18,6 +18,7 @@ GameObject:
   - 114: {fileID: 11425474}
   - 114: {fileID: 11454808}
   - 114: {fileID: 11435046}
+  - 114: {fileID: 11490386}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: MainCamera
@@ -166,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lookSensitivity: 3
+  Controlling: {fileID: 0}
 --- !u!114 &11489244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,6 +180,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 160836, guid: 13368022687cef149b4013382b565933, type: 2}
+--- !u!114 &11490386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9796ff041dd409641ababe2277971749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &12439244
 Behaviour:
   m_ObjectHideFlags: 1
