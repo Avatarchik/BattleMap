@@ -16,7 +16,6 @@ GameObject:
   - 114: {fileID: 11472516}
   - 114: {fileID: 11489244}
   - 114: {fileID: 11425474}
-  - 114: {fileID: 11454808}
   - 114: {fileID: 11435046}
   - 114: {fileID: 11490386}
   m_Layer: 0
@@ -110,18 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e662d15b440c8489fcd1b9868f0409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11454808
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7cffdc2a5aa9054b9abdd551f781569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 131508, guid: 1523c4ae1ab605e43972fce1e7ddd896, type: 2}
 --- !u!114 &11469472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,6 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 160836, guid: 13368022687cef149b4013382b565933, type: 2}
+  SpawnableUnits:
+  - {fileID: 131508, guid: 1523c4ae1ab605e43972fce1e7ddd896, type: 2}
+  - {fileID: 162304, guid: 7ee7a5f5d1003034caef9907c6507a56, type: 2}
 --- !u!114 &11490386
 MonoBehaviour:
   m_ObjectHideFlags: 1

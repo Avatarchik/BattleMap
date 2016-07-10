@@ -16,10 +16,7 @@
 				{
 					unit = GetComponentInChildren<IUnit>();
 					if (unit != null) { return unit; }
-					else
-					{
-						throw new Exception("Cannot find a unit.");
-					}
+					return unit;
 				}
 			}
 		}
@@ -32,10 +29,7 @@
 				{
 					motor = GetComponentInChildren<IMotor>();
 					if (motor != null) { return motor; }
-					else
-					{
-						throw new Exception("Cannot find a motor.");
-					}
+					return motor;
 				}
 			}
 		}
@@ -47,11 +41,7 @@
 				else
 				{
 					namePlate = GetComponentInChildren<UnitNamePlate>();
-					if (namePlate != null) { return namePlate; }
-					else
-					{
-						throw new Exception("Cannot find a name plate.");
-					}
+					return namePlate;
 				}
 			}
 		}

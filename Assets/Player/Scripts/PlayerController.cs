@@ -17,14 +17,7 @@
 
 		void Start()
 		{
-			if (!isLocalPlayer)
-			{
-				GetComponent<Camera>().enabled = false;
-				GetComponent<AudioListener>().enabled = false;
-				GetComponent<FlareLayer>().enabled = false;
-				GetComponent<GUILayer>().enabled = false;
-				return;
-			}
+			if (!isLocalPlayer) { return; }
 
 			UnitManager cam = GetComponent<UnitManager>();
 			if (cam != null)

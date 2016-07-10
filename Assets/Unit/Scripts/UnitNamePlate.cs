@@ -23,7 +23,11 @@
 			float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 			text.characterSize = distance / 2000.0f;
 
-			if (Target == null) { return; }
+			if (Target == null || (Target.NamePlate != null && Target.NamePlate == this))
+			{
+				text.text = identifier;
+				return;
+			}
 			Transform tTransform = Target.transform;
 			distance = Vector3.Distance(new Vector3(transform.position.x, 0.0f, transform.position.z),
 				new Vector3(tTransform.position.x, 0.0f, tTransform.position.z));

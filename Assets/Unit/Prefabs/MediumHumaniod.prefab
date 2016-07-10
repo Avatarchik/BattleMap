@@ -41,13 +41,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 433446}
   - 114: {fileID: 11477590}
-  - 136: {fileID: 13630654}
   - 114: {fileID: 11470362}
   - 114: {fileID: 11432560}
   - 114: {fileID: 11484256}
   - 114: {fileID: 11468916}
   m_Layer: 0
-  m_Name: Unit
+  m_Name: MediumHumaniod
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,19 +589,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!136 &13630654
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131508}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.3
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.3, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
