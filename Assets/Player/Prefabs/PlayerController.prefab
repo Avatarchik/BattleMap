@@ -18,6 +18,7 @@ GameObject:
   - 114: {fileID: 11425474}
   - 114: {fileID: 11435046}
   - 114: {fileID: 11490386}
+  - 114: {fileID: 11431870}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: MainCamera
@@ -98,6 +99,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cRotationLimit: 85
+--- !u!114 &11431870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0075e25c3cf498046b14bf032c93c4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11435046
 MonoBehaviour:
   m_ObjectHideFlags: 1

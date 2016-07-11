@@ -61,6 +61,11 @@
 		{
 			inControl = false;
 		}
+
+		public bool InControl()
+		{
+			return inControl;
+		}
 	}
 
 }

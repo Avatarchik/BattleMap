@@ -1,10 +1,11 @@
 ﻿namespace Unit
 {
+	using System;
 	using UnityEngine;
 
 	[RequireComponent(typeof(TextMesh))]
 	[RequireComponent(typeof(UnitManager))]
-	public class UnitNamePlate : MonoBehaviour
+	public class NamePlate : MonoBehaviour, INamePlate
 	{
 		public static UnitManager Target;
 		private UnitManager manager;
@@ -23,7 +24,7 @@
 			float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 			text.characterSize = distance / 2000.0f;
 
-			if (Target == null || (Target.NamePlate != null && Target.NamePlate == this))
+			if (Target == null || manager.Motor.InControl())
 			{
 				text.text = identifier;
 				return;

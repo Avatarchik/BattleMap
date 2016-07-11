@@ -9,7 +9,7 @@
 	public class Unit : NetworkBehaviour, IUnit
 	{
 		private string identifier = "Untitled";
-		private UnitNamePlate namePlate;
+		private INamePlate namePlate;
 
 		private Color colour;
 
@@ -18,7 +18,7 @@
 
 		void Start()
 		{
-			namePlate = GetComponentInChildren<UnitNamePlate>();
+			namePlate = GetComponentInChildren<INamePlate>();
 			namePlate.SetName(identifier);
 		}
 

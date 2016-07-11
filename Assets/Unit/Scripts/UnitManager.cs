@@ -1,6 +1,5 @@
 ﻿namespace Unit
 {
-	using UnityEngine;
 	using UnityEngine.Networking;
 	using Player;
 	using System;
@@ -16,7 +15,7 @@
 				{
 					unit = GetComponentInChildren<IUnit>();
 					if (unit != null) { return unit; }
-					return unit;
+					throw new Exception("Unit not found.");
 				}
 			}
 		}
@@ -29,26 +28,27 @@
 				{
 					motor = GetComponentInChildren<IMotor>();
 					if (motor != null) { return motor; }
-					return motor;
+					throw new Exception("Motor not found.");
 				}
 			}
 		}
-		public UnitNamePlate NamePlate
+		public INamePlate NamePlate
 		{
 			get
 			{
 				if (namePlate != null) { return namePlate; }
 				else
 				{
-					namePlate = GetComponentInChildren<UnitNamePlate>();
-					return namePlate;
+					namePlate = GetComponentInChildren<INamePlate>();
+					if (namePlate != null) { return namePlate; }
+					throw new Exception("Name plate not found.");
 				}
 			}
 		}
 
 		private IUnit unit;
 		private IMotor motor;
-		private UnitNamePlate namePlate;
+		private INamePlate namePlate;
 
 		public override void OnStartAuthority()
 		{

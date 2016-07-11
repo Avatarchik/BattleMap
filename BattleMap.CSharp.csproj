@@ -77,12 +77,14 @@
     <Compile Include="Assets\Player\Scripts\UserInterface.cs" />
     <Compile Include="Assets\Unit\Scripts\CameraMotor.cs" />
     <Compile Include="Assets\Unit\Scripts\CameraUnit.cs" />
+    <Compile Include="Assets\Unit\Scripts\DummyNamePlate.cs" />
     <Compile Include="Assets\Unit\Scripts\IMotor.cs" />
+    <Compile Include="Assets\Unit\Scripts\INamePlate.cs" />
     <Compile Include="Assets\Unit\Scripts\IUnit.cs" />
+    <Compile Include="Assets\Unit\Scripts\NamePlate.cs" />
     <Compile Include="Assets\Unit\Scripts\Unit.cs" />
     <Compile Include="Assets\Unit\Scripts\UnitManager.cs" />
     <Compile Include="Assets\Unit\Scripts\UnitMotor.cs" />
-    <Compile Include="Assets\Unit\Scripts\UnitNamePlate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

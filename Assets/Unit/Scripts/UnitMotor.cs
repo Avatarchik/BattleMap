@@ -105,6 +105,11 @@
 		{
 			return transform;
 		}
+
+		public bool InControl()
+		{
+			return inControl;
+		}
 	}
 
 }

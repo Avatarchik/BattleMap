@@ -11,6 +11,8 @@
 		void TakeControl(Transform Caller);
 
 		void LooseControl();
+
+		bool InControl();
 	}
 
 }

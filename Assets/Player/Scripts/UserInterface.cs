@@ -129,7 +129,7 @@
 			controller.TakeMotor(ownedUnits[Index]);
 			controlling = ownedUnits[Index];
 			namerField.text = controlling.Unit.GetName();
-			UnitNamePlate.Target = controlling;
+			NamePlate.Target = controlling;
 		}
 
 		private GameObject CreateButton(GameObject prefab, Vector3 position, Vector2 size, UnityAction method, string Name)
