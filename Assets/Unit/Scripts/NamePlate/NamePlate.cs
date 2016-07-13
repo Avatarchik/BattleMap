@@ -37,8 +37,8 @@
 
 			// distance in feet
 			distance *= 2.0f;
-			distance -= Target.Unit.GetRadius();
-			distance -= manager.Unit.GetRadius();
+			distance -= Target.Unit.Radius;
+			distance -= manager.Unit.Radius;
 			distance += 5.0f;
 
 			text.text = identifier + ": " + Mathf.Ceil(distance) + "ft.";

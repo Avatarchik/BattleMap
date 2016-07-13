@@ -75,7 +75,7 @@
 
 		private void SetName(string Name)
 		{
-			controlling.Unit.SetName(Name);
+			controlling.Unit.Name = Name;
 		}
 
 		public void SetColour(Color Colour)
@@ -84,7 +84,7 @@
 			UnitColour = Colour;
 			foreach (var unit in ownedUnits)
 			{
-				unit.Unit.SetColour(Colour);
+				unit.Unit.Colour = Colour;
 			}
 		}
 
@@ -117,7 +117,7 @@
 				buttons.Add(CreateButton(button, new Vector3(Screen.width - 110, pos),
 					new Vector2(200, 30),
 					delegate { TakeMotor(temp); },
-					unit.Unit.GetName()));
+					unit.Unit.Name));
 				pos += 30;
 				i++;
 			}
@@ -128,7 +128,7 @@
 			if (ownedUnits.Count <= Index) { return; }
 			controller.TakeMotor(ownedUnits[Index]);
 			controlling = ownedUnits[Index];
-			namerField.text = controlling.Unit.GetName();
+			namerField.text = controlling.Unit.Name;
 			NamePlate.Target = controlling;
 		}
 
