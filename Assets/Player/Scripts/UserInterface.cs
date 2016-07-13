@@ -17,6 +17,7 @@
 		[SerializeField]
 		private GameObject button;
 		private GameObject nameInput;
+		private GameObject colourPicker;
 		private InputField namerField;
 
 		[SerializeField]
@@ -44,9 +45,11 @@
 			canvas = FindObjectOfType<Canvas>();
 
 			ColorPicker picker = canvas.GetComponentInChildren<ColorPicker>();
+			colourPicker = picker.gameObject;
 			picker.OnChange.AddListener(SetColour);
 			
 			namerField = canvas.GetComponentInChildren<InputField>();
+			nameInput = namerField.gameObject;
 			namerField.text = "Free Roam";
 			namerField.onValueChanged.AddListener(SetName);
 			namerField.onEndEdit.AddListener(SetName);
@@ -56,6 +59,8 @@
 		{
 			if (!isLocalPlayer) { return; }
 			if (controlling == null) { TakeMotor(0); }
+			colourPicker.transform.position = new Vector3(30, 90);
+			nameInput.transform.position = new Vector3(Screen.width / 2 + 50, 40);
 			if (Input.GetKey(KeyCode.LeftShift) &&
 				Input.GetKey(KeyCode.LeftAlt))
 			{
