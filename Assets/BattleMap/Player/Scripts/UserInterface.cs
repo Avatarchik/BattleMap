@@ -22,6 +22,7 @@
 		private InputField namerField;
 
 		private GameObject spawning;
+		private GameObject spawningPrefab;
 
 		[SerializeField]
 		private List<GameObject> SpawnableUnits;
@@ -83,7 +84,7 @@
 				if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift))
 				{
 					CmdSpawnObject(spawning);
-					SpawnPrefab(spawning);
+					SpawnPrefab(spawningPrefab);
 				}
 				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
 				{
@@ -205,6 +206,7 @@
 
 		private void SpawnPrefab(GameObject Prefab)
 		{
+			spawningPrefab = Prefab;
 			spawning = (GameObject)Instantiate(Prefab, Vector3.zero, Quaternion.Euler(Vector3.zero));
 		}
 
