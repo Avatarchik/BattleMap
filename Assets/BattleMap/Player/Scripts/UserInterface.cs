@@ -191,6 +191,10 @@
 				dropDownButtons.Add(CreateButton(button, new Vector3(startPoint.x, pos), buttonSize,
 					() => 
 					{
+						if (spawning != null)
+						{
+							Destroy(spawning);
+						}
 						SpawnPrefab(temp);
 					}
 					, item.name));

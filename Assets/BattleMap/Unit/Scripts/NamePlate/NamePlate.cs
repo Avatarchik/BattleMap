@@ -39,7 +39,7 @@
 			if (Target == null || manager.Motor.InControl)
 			{
 				text.text = "Name: " + identifier + "\n Traveled: " +
-					UnitsToFeet(manager.Motor.DistanceTraveled) + "ft.";
+					Mathf.RoundToInt(UnitsToFeet(manager.Motor.DistanceTraveled)) + "ft.";
 				return;
 			}
 			Transform tTransform = Target.transform;
