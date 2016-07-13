@@ -180,8 +180,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 160836, guid: 13368022687cef149b4013382b565933, type: 2}
   SpawnableUnits:
+  - {fileID: 121378, guid: ec1e3f622285e5441b0ee4cc066fbfbc, type: 2}
+  - {fileID: 143610, guid: b4da995d66a022241ae4754aa55b840b, type: 2}
+  - {fileID: 149804, guid: bec60a0316070354ba50e08a7f6e98c4, type: 2}
+  - {fileID: 150460, guid: ff4ad602b6b66a24a9bb20e9608a7a7b, type: 2}
   - {fileID: 131508, guid: 1523c4ae1ab605e43972fce1e7ddd896, type: 2}
   - {fileID: 162304, guid: 7ee7a5f5d1003034caef9907c6507a56, type: 2}
+  - {fileID: 183788, guid: 9ac68d08991144d4ab79463dae8ff3db, type: 2}
+  - {fileID: 196134, guid: 403e059d8e6935045b628615898dc399, type: 2}
+  - {fileID: 113596, guid: 85636ca05a37a594aa7f41e67c76751d, type: 2}
 --- !u!114 &11490386
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -49,6 +49,10 @@
 			float zMov = Input.GetAxisRaw("Vertical");
 			float upMov = Convert.ToSingle(Input.GetKey(KeyCode.Space));
 
+			// check camera zoom
+			float zoom = Input.GetAxisRaw("Mouse ScrollWheel");
+			Controlling.Motor.Zoom = -zoom;
+
 			Vector3 movHorizontal = transform.right * xMov;
 			Vector3 movVertical = transform.forward * zMov;
 			Vector3 movUp = new Vector3(0, upMov, 0);
@@ -57,7 +61,7 @@
 			Vector3 velocity = (movHorizontal + movVertical + movUp).normalized * speed;
 
 			// apply movement
-			Controlling.Motor.Move(velocity);
+			Controlling.Motor.Movement = velocity;
 
 			if (Input.GetMouseButton(1))
 			{
@@ -73,11 +77,11 @@
 				Vector3 rotation = new Vector3(xRot, yRot, 0f) * lookSensitivity;
 
 				// apply rotation
-				Controlling.Motor.Rotate(rotation);
+				Controlling.Motor.Rotation = rotation;
 			}
 			else
 			{
-				Controlling.Motor.Rotate(new Vector3(0, 0, 0));
+				Controlling.Motor.Rotation = new Vector3(0, 0, 0);
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;
 			}

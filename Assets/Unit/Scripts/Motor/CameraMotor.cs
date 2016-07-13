@@ -16,15 +16,11 @@
 
 		private bool inControl = false;
 
-		public void Move(Vector3 Velocity)
-		{
-			velocity = Velocity;
-		}
-
-		public void Rotate(Vector3 Rotation)
-		{
-			rotation = Rotation;
-		}
+		public Vector3 Movement { set { velocity = value; } }
+		public Vector3 Rotation { set { rotation = value; } }
+		float IMotor.Zoom { set { } }
+		bool IMotor.InControl { get { return inControl; } }
+		public float GetDistanceTraveled { get { return 0; } }
 
 		void FixedUpdate()
 		{
@@ -60,11 +56,6 @@
 		public void LooseControl()
 		{
 			inControl = false;
-		}
-
-		public bool InControl()
-		{
-			return inControl;
 		}
 	}
 

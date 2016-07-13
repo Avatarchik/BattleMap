@@ -12,6 +12,8 @@
 		private TextMesh text;
 		private string identifier;
 
+		public string Name { set { identifier = value; } }
+
 		void Start()
 		{
 			text = GetComponent<TextMesh>();
@@ -24,7 +26,7 @@
 			float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 			text.characterSize = distance / 2000.0f;
 
-			if (Target == null || manager.Motor.InControl())
+			if (Target == null || manager.Motor.InControl)
 			{
 				text.text = identifier;
 				return;
@@ -40,11 +42,6 @@
 			distance += 5.0f;
 
 			text.text = identifier + ": " + Mathf.Ceil(distance) + "ft.";
-		}
-
-		public void SetName(string Name)
-		{
-			identifier = Name;
 		}
 	}
 }

@@ -1,9 +1,8 @@
 ﻿namespace Unit
 {
+	using System;
 	using UnityEngine;
 	using UnityEngine.Networking;
-	using Player;
-	using System;
 
 	[RequireComponent(typeof(IUnit))]
 	public class UnitMotor : NetworkBehaviour, IMotor
@@ -14,6 +13,8 @@
 		private Vector3 velocity = Vector3.zero;
 		private Vector3 rotation = Vector3.zero;
 		private float curCRotationX = 0f;
+		[SerializeField]
+		private float zoom = 5f;
 
 		private Transform cam;
 
@@ -22,18 +23,45 @@
 
 		private bool inControl;
 
-		[SyncVar]
-		private string identifier = "";
-
-		public void Move(Vector3 Velocity)
+		public Vector3 Movement
 		{
-			velocity = Velocity;
-			velocity.y = 0f;
+			set
+			{
+				velocity = value;
+				velocity.y = 0f;
+			}
 		}
 
-		public void Rotate(Vector3 Rotation)
+		public Vector3 Rotation
 		{
-			rotation = Rotation;
+			set
+			{
+				rotation = value;
+			}
+		}
+
+		float IMotor.Zoom
+		{
+			set
+			{
+				zoom = value;
+			}
+		}
+
+		bool IMotor.InControl
+		{
+			get
+			{
+				return inControl;
+			}
+		}
+
+		public float GetDistanceTraveled
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 		void FixedUpdate()
@@ -41,6 +69,7 @@
 			if (!inControl) { return; }
 			PerformMovement();
 			PerformRotation();
+			cam.transform.localPosition = new Vector3(0, 0, -zoom);
 		}
 
 		void OnDisable()
@@ -75,7 +104,7 @@
 			{
 				inControl = true;
 				cam.transform.parent = cameraPivot;
-				cam.transform.localPosition = new Vector3(0, 0, -5);
+				cam.transform.localPosition = new Vector3(0, 0, -zoom);
 				cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
 			}
 		}
@@ -84,31 +113,6 @@
 		{
 			cam.transform.parent = null;
 			inControl = false;
-		}
-
-		public string GetName()
-		{
-			return identifier;
-		}
-
-		public void SetName(string Name)
-		{
-			identifier = Name;
-		}
-
-		public IUnit GetUnit()
-		{
-			return GetComponent<IUnit>();
-		}
-
-		public Transform GetTransform()
-		{
-			return transform;
-		}
-
-		public bool InControl()
-		{
-			return inControl;
 		}
 	}
 

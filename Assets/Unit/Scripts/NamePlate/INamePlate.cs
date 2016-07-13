@@ -2,7 +2,7 @@
 {
 	public interface INamePlate
 	{
-		void SetName(string Name);
+		string Name { set; }
 	}
 
 }

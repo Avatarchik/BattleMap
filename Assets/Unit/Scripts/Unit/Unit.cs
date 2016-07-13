@@ -4,7 +4,6 @@
 	using UnityEngine;
 	using UnityEngine.Networking;
 	using System.Collections.Generic;
-	using System;
 
 	public class Unit : NetworkBehaviour, IUnit
 	{
@@ -16,10 +15,24 @@
 		[SerializeField]
 		private float radius;
 
+		public string Name
+		{
+			get { return identifier; }
+			set { CmdNameChanged(value); }
+		}
+
+		public Color Colour
+		{
+			get { return colour; }
+			set { CmdColourChanged(value.r, value.g, value.b);}
+		}
+
+		public float Radius { get { return radius; } }
+
 		void Start()
 		{
 			namePlate = GetComponentInChildren<INamePlate>();
-			namePlate.SetName(identifier);
+			namePlate.Name = identifier;
 		}
 
 		public override void OnStartAuthority()
@@ -27,26 +40,6 @@
 			CmdColourChanged(UserInterface.UnitColour.r,
 					UserInterface.UnitColour.g,
 					UserInterface.UnitColour.b);
-		}
-
-		public Color GetColour()
-		{
-			return colour;
-		}
-
-		public string GetName()
-		{
-			return identifier;
-		}
-
-		public void SetColour(Color Colour)
-		{
-			CmdColourChanged(Colour.r, Colour.g, Colour.b);
-		}
-
-		public void SetName(string Name)
-		{
-			CmdNameChanged(Name);
 		}
 
 		[Command]
@@ -66,7 +59,7 @@
 		{
 			identifier = Name;
 			FindObjectOfType<UserInterface>().ArrangeButtons();
-			namePlate.SetName(Name);
+			namePlate.Name = Name;
 		}
 
 		[ClientRpc]
@@ -119,14 +112,10 @@
 			RpcDeleteSelf();
 		}
 
+		[ClientRpc]
 		private void RpcDeleteSelf()
 		{
 			Destroy(gameObject);
-		}
-
-		public float GetRadius()
-		{
-			return radius;
 		}
 	}
 }

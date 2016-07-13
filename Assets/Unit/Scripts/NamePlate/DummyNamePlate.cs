@@ -1,13 +1,10 @@
 ﻿namespace Unit
 {
-	using UnityEngine;
-	using System.Collections;
 	using System;
+	using UnityEngine;
 
 	public class DummyNamePlate : MonoBehaviour, INamePlate
 	{
-		public void SetName(string Name)
-		{
-		}
+		public string Name { set{ } }
 	}
 }
