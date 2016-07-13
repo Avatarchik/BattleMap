@@ -533,7 +533,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPivot: {fileID: 415808}
-  cRotationLimit: 85
+  zoom: 30
+  speed: 4
 --- !u!114 &11487190
 MonoBehaviour:
   m_ObjectHideFlags: 1

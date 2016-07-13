@@ -23,7 +23,8 @@
 		private Vector3 startTurnPosition;
 
 		[SerializeField]
-		private float cRotationLimit = 85f;
+		private float speed = 4f;
+		private const float cRotationLimit = 85f;
 
 		private bool inControl;
 
@@ -60,7 +61,7 @@
 		private void PerformMovement()
 		{
 			if (velocity == Vector3.zero) { return; }
-			transform.position = transform.position + velocity * Time.fixedDeltaTime;
+			transform.position = transform.position + velocity.normalized * Time.fixedDeltaTime * speed;
 		}
 
 		private void PerformRotation()
