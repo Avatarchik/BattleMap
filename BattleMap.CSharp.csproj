@@ -72,19 +72,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Network\ServerTypeLoader.cs" />
-    <Compile Include="Assets\Player\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Player\Scripts\UserInterface.cs" />
-    <Compile Include="Assets\Unit\Scripts\Motor\CameraMotor.cs" />
-    <Compile Include="Assets\Unit\Scripts\Motor\IMotor.cs" />
-    <Compile Include="Assets\Unit\Scripts\Motor\UnitMotor.cs" />
-    <Compile Include="Assets\Unit\Scripts\NamePlate\DummyNamePlate.cs" />
-    <Compile Include="Assets\Unit\Scripts\NamePlate\INamePlate.cs" />
-    <Compile Include="Assets\Unit\Scripts\NamePlate\NamePlate.cs" />
-    <Compile Include="Assets\Unit\Scripts\Unit\CameraUnit.cs" />
-    <Compile Include="Assets\Unit\Scripts\Unit\IUnit.cs" />
-    <Compile Include="Assets\Unit\Scripts\Unit\Unit.cs" />
-    <Compile Include="Assets\Unit\Scripts\UnitManager.cs" />
+    <Compile Include="Assets\BattleMap\Network\ServerTypeLoader.cs" />
+    <Compile Include="Assets\BattleMap\Player\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\BattleMap\Player\Scripts\UserInterface.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\Motor\CameraMotor.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\Motor\IMotor.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\Motor\UnitMotor.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\NamePlate\DummyNamePlate.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\NamePlate\INamePlate.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\NamePlate\NamePlate.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\Unit\CameraUnit.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\Unit\IUnit.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\Unit\Unit.cs" />
+    <Compile Include="Assets\BattleMap\Unit\Scripts\UnitManager.cs" />
+    <Compile Include="Assets\BattleMap\Utilities\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
