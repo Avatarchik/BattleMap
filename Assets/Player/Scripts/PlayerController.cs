@@ -31,6 +31,14 @@
 		{
 			if (!isLocalPlayer) { return; }
 			GetInput();
+			if (Input.GetKeyDown(KeyCode.R))
+			{
+				Controlling.Motor.ResetTurn();
+			}
+			else if (Input.GetKeyDown(KeyCode.N))
+			{
+				Controlling.Motor.NewTurn();
+			}
 		}
 
 		public void TakeMotor(UnitManager Unit)

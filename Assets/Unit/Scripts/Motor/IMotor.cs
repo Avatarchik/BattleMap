@@ -16,7 +16,11 @@
 
 		bool InControl { get; }
 
-		float GetDistanceTraveled { get; }
+		float DistanceTraveled { get; }
+
+		void ResetTurn();
+
+		void NewTurn();
 	}
 
 }

@@ -18,54 +18,34 @@
 
 		private Transform cam;
 
+		private float distance = 0f;
+		private Vector3 previousPosition;
+		private Vector3 startTurnPosition;
+
 		[SerializeField]
 		private float cRotationLimit = 85f;
 
 		private bool inControl;
 
-		public Vector3 Movement
-		{
-			set
-			{
-				velocity = value;
-				velocity.y = 0f;
-			}
-		}
+		public Vector3 Movement { set { velocity = value; velocity.y = 0f; } }
+		public Vector3 Rotation { set { rotation = value; } }
+		float IMotor.Zoom { set { zoom += value; } }
+		bool IMotor.InControl { get { return inControl; } }
+		public float DistanceTraveled { get { return distance; } }
 
-		public Vector3 Rotation
+		void Start()
 		{
-			set
-			{
-				rotation = value;
-			}
-		}
-
-		float IMotor.Zoom
-		{
-			set
-			{
-				zoom = value;
-			}
-		}
-
-		bool IMotor.InControl
-		{
-			get
-			{
-				return inControl;
-			}
-		}
-
-		public float GetDistanceTraveled
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
+			startTurnPosition = transform.position;
+			previousPosition = transform.position;
 		}
 
 		void FixedUpdate()
 		{
+			if (transform.position != previousPosition)
+			{
+				distance += Vector3.Distance(previousPosition, transform.position);
+				previousPosition = transform.position;
+			}
 			if (!inControl) { return; }
 			PerformMovement();
 			PerformRotation();
@@ -113,6 +93,32 @@
 		{
 			cam.transform.parent = null;
 			inControl = false;
+		}
+
+		public void ResetTurn() { CmdResetTurn(); }
+
+		public void NewTurn() { CmdNewTurn(); }
+
+		[Command]
+		private void CmdResetTurn() { RpcResetTurn(); }
+
+		[ClientRpc]
+		private void RpcResetTurn()
+		{
+			transform.position = startTurnPosition;
+			previousPosition = startTurnPosition;
+			distance = 0f;
+		}
+
+		[Command]
+		private void CmdNewTurn() { RpcNewTurn(); }
+
+		[ClientRpc]
+		private void RpcNewTurn()
+		{
+			startTurnPosition = transform.position;
+			previousPosition = transform.position;
+			distance = 0f;
 		}
 	}
 

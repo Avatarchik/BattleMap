@@ -1,6 +1,5 @@
 ﻿namespace Unit
 {
-	using System;
 	using UnityEngine;
 
 	[RequireComponent(typeof(TextMesh))]
@@ -20,6 +19,11 @@
 			manager = GetComponentInParent<UnitManager>();
 		}
 
+		private float UnitsToFeet(float Input)
+		{
+			return Mathf.Ceil(Input * 2f);
+		}
+
 		void Update()
 		{
 			transform.rotation = Camera.main.transform.rotation;
@@ -28,7 +32,8 @@
 
 			if (Target == null || manager.Motor.InControl)
 			{
-				text.text = identifier;
+				text.text = identifier + "\n" +
+					UnitsToFeet(manager.Motor.DistanceTraveled) + "ft. traveled this turn.";
 				return;
 			}
 			Transform tTransform = Target.transform;
@@ -36,12 +41,14 @@
 				new Vector3(tTransform.position.x, 0.0f, tTransform.position.z));
 
 			// distance in feet
-			distance *= 2.0f;
+			distance = UnitsToFeet(distance);
 			distance -= Target.Unit.Radius;
 			distance -= manager.Unit.Radius;
 			distance += 5.0f;
 
-			text.text = identifier + ": " + Mathf.Ceil(distance) + "ft.";
+			text.text = identifier +  "\n" + 
+				Mathf.Ceil(distance) + "ft. away\n" + 
+				UnitsToFeet(manager.Motor.DistanceTraveled) + "ft. traveled this turn.";
 		}
 	}
 }

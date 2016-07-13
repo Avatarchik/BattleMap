@@ -20,7 +20,7 @@
 		public Vector3 Rotation { set { rotation = value; } }
 		float IMotor.Zoom { set { } }
 		bool IMotor.InControl { get { return inControl; } }
-		public float GetDistanceTraveled { get { return 0; } }
+		public float DistanceTraveled { get { return 0; } }
 
 		void FixedUpdate()
 		{
@@ -48,15 +48,13 @@
 			transform.eulerAngles = new Vector3(curCRotationX, transform.eulerAngles.y, 0f);
 		}
 
-		public void TakeControl(Transform Caller)
-		{
-			inControl = true;
-		}
+		public void TakeControl(Transform Caller) { inControl = true; }
 
-		public void LooseControl()
-		{
-			inControl = false;
-		}
+		public void LooseControl() { inControl = false; }
+
+		public void ResetTurn() { }
+
+		public void NewTurn() { }
 	}
 
 }
