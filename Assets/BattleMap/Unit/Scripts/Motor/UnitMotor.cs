@@ -21,6 +21,8 @@
 		[SyncVar]
 		private float distance = 0f;
 
+		private float localDistance = 0f;
+
 		private Vector3 previousPosition;
 		private Vector3 startTurnPosition;
 
@@ -44,12 +46,14 @@
 
 		void FixedUpdate()
 		{
+			if (!inControl) { return; }
 			if (transform.position != previousPosition)
 			{
-				distance += Vector3.Distance(previousPosition, transform.position);
+				localDistance += Vector3.Distance(previousPosition, transform.position);
+				CmdSetDistance(localDistance);
 				previousPosition = transform.position;
 			}
-			if (!inControl) { return; }
+
 			PerformMovement();
 			PerformRotation();
 			cam.transform.localPosition = new Vector3(0, 0, -zoom);
@@ -102,14 +106,22 @@
 		{
 			transform.position = startTurnPosition;
 			previousPosition = startTurnPosition;
-			distance = 0f;
+			localDistance = 0f;
+			CmdSetDistance(0f);
 		}
 
 		public void NewTurn()
 		{
 			startTurnPosition = transform.position;
 			previousPosition = transform.position;
-			distance = 0f;
+			localDistance = 0f;
+			CmdSetDistance(0f);
+		}
+
+		[Command]
+		private void CmdSetDistance(float Distance)
+		{
+			distance = Distance;
 		}
 	}
 

@@ -48,13 +48,13 @@
 		}
 
 		[Command]
-		public void CmdSetColour(Color newColor)
+		private void CmdSetColour(Color newColor)
 		{
 			colour = newColor;
 		}
 
 		[Command]
-		public void CmdSetName(string newName)
+		private void CmdSetName(string newName)
 		{
 			identifier = newName;
 		}
