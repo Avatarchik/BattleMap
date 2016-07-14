@@ -11,7 +11,5 @@
 		public string Name { get { return identifier; } set { identifier = value; } }
 
 		public float Circumference { get { return 0.0f; } }
-
-		public void DeleteSelf() { }
 	}
 }

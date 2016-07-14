@@ -500,6 +500,7 @@ MonoBehaviour:
   - {fileID: 131508, guid: f5a86f91dc14667419e92c7b62909f99, type: 2}
   - {fileID: 131508, guid: 4c52a8a918ee7744ea1a5b6d6a0f9654, type: 2}
   - {fileID: 155996, guid: 4374caa10e6ad3d4fb19eecbb393110b, type: 2}
+  - {fileID: 117752, guid: 139b807c9d766d94aa0f44365b259f73, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -565,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  showGUI: 1
+  showGUI: 0
   offsetX: 300
   offsetY: 0
 --- !u!1 &1128564191
@@ -1394,7 +1395,7 @@ GameObject:
   - 33: {fileID: 1490644523}
   - 64: {fileID: 1490644522}
   - 23: {fileID: 1490644521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

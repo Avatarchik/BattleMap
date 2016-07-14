@@ -8,75 +8,72 @@
 
 	public class Unit : NetworkBehaviour, IUnit
 	{
+		[SyncVar(hook = "OnNameChanged")]
 		private string identifier = "Untitled";
 		private INamePlate namePlate;
 
-		private Color colour;
+		[SyncVar(hook = "OnColourChanged")]
+		private Color colour = Color.cyan;
 
 		public string Name
 		{
 			get { return identifier; }
-			set { CmdNameChanged(value); }
+			set { CmdSetName(value); }
 		}
 
 		public Color Colour
 		{
 			get { return colour; }
-			set { CmdColourChanged(value.r, value.g, value.b);}
+			set { CmdSetColour(value); }
 		}
 
 		public float Circumference { get { return transform.localScale.XZAverage(); } }
-
+		
 		void Start()
 		{
 			namePlate = GetComponentInChildren<INamePlate>();
-			namePlate.Name = identifier;
+			OnNameChanged(identifier);
+			OnColourChanged(colour);
 		}
 
 		public override void OnStartAuthority()
 		{
-			CmdColourChanged(UserInterface.UnitColour.r,
-					UserInterface.UnitColour.g,
-					UserInterface.UnitColour.b);
+			colour = UserInterface.UnitColour;
 		}
 
-		[Command]
-		private void CmdColourChanged(float r, float g, float b)
+		private void OnNameChanged(string NewName)
 		{
-			RpcColourChanged(r, g, b);
-		}
-
-		[Command]
-		private void CmdNameChanged(string Name)
-		{
-			RpcNameChanged(Name);
-		}
-
-		[ClientRpc]
-		private void RpcNameChanged(string Name)
-		{
-			identifier = Name;
 			FindObjectOfType<UserInterface>().ArrangeButtons();
-			namePlate.Name = Name;
+			namePlate.Name = NewName;
 		}
 
-		[ClientRpc]
-		private void RpcColourChanged(float r, float g, float b)
+		[Command]
+		public void CmdSetColour(Color newColor)
 		{
-			colour = new Color(r, g, b);
+			colour = newColor;
+		}
+
+		[Command]
+		public void CmdSetName(string newName)
+		{
+			identifier = newName;
+		}
+
+		private void OnColourChanged(Color newColor)
+		{
 			var colourables = GetColourableChildren(transform);
+			namePlate.Colour = newColor;
 			foreach (var colourable in colourables)
 			{
 				Renderer renderer = colourable.GetComponent<Renderer>();
 				Material mat = renderer.material;
 
 				float emission = Mathf.PingPong(Time.time, 1.0f);
-				Color baseColor = colour;
+				Color baseColor = newColor;
 
 				Color finalColor = baseColor * Mathf.LinearToGammaSpace(emission);
 
-				mat.color = colour;
-				namePlate.Colour = colour;
+				mat.color = newColor;
 				mat.SetColor("_EmissionColor", finalColor);
 			}
 		}
@@ -98,23 +95,6 @@
 			}
 
 			return output;
-		}
-
-		public void DeleteSelf()
-		{
-			CmdDeleteSelf();
-		}
-
-		[Command]
-		private void CmdDeleteSelf()
-		{
-			RpcDeleteSelf();
-		}
-
-		[ClientRpc]
-		private void RpcDeleteSelf()
-		{
-			Destroy(gameObject);
 		}
 	}
 }

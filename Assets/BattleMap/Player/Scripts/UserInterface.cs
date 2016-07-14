@@ -8,6 +8,7 @@
 	using System.Collections.Generic;
 	using uCPf;
 	using Utilities;
+	using Prop;
 
 	public class UserInterface : NetworkBehaviour
 	{
@@ -22,7 +23,6 @@
 		private InputField namerField;
 
 		private GameObject spawning;
-		private GameObject spawningPrefab;
 
 		[SerializeField]
 		private List<GameObject> SpawnableUnits;
@@ -74,17 +74,27 @@
 			colourPicker.transform.position = new Vector3(30, 90);
 			nameInput.transform.position = new Vector3(Screen.width / 2 + 50, 40);
 
+			if (Input.GetKeyDown(KeyCode.C))
+			{
+				SpawnRangeChecker();
+			}
+
 			if (spawning != null)
 			{
 				RaycastHit hit;
-				if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+				if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), 
+					out hit, 
+					maxDistance: float.MaxValue, 
+					layerMask: 1 << LayerMask.NameToLayer("Floor")))
 				{
 					spawning.transform.position = hit.point.Round(1f);
 				}
 				if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift))
 				{
-					CmdSpawnObject(spawning);
-					SpawnPrefab(spawningPrefab);
+					CmdSpawnObject(spawning.name, 
+						spawning.transform.position.x, 
+						spawning.transform.position.y, 
+						spawning.transform.position.z);
 				}
 				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
 				{
@@ -102,7 +112,19 @@
 					UnitManager temp = controlling;
 					TakeMotor(0);
 					RemoveUnit(temp);
-					temp.Unit.DeleteSelf();
+					temp.Prop.DeleteSelf();
+				}
+				if (Input.GetMouseButtonDown(0))
+				{
+					RaycastHit hit;
+					if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+					{
+						Prop prop = hit.transform.GetComponent<Prop>();
+						if (prop != null)
+						{
+							prop.DeleteSelf();
+						}
+					}
 				}
 			}
 		}
@@ -110,6 +132,11 @@
 		private void SetName(string Name)
 		{
 			controlling.Unit.Name = Name;
+		}
+
+		public void SpawnRangeChecker()
+		{
+			CmdSpawnObject("RangeChecker", 0, 0, 0);
 		}
 
 		public void SetColour(Color Colour)
@@ -206,14 +233,16 @@
 
 		private void SpawnPrefab(GameObject Prefab)
 		{
-			spawningPrefab = Prefab;
 			spawning = (GameObject)Instantiate(Prefab, Vector3.zero, Quaternion.Euler(Vector3.zero));
 		}
 
 		[Command]
-		private void CmdSpawnObject(GameObject toSpawn)
+		private void CmdSpawnObject(string toSpawn, float x, float y, float z)
 		{
-			NetworkServer.SpawnWithClientAuthority(toSpawn, connectionToClient);
+			string final = toSpawn.Replace("(Clone)", string.Empty);
+			GameObject instance = (GameObject)Instantiate(Resources.Load<GameObject>(final), 
+				new Vector3(x, y, z), Quaternion.Euler(Vector3.zero));
+			NetworkServer.SpawnWithClientAuthority(instance, connectionToClient);
 		}
 	}
 }

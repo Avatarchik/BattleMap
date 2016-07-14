@@ -3,7 +3,6 @@
 	using UnityEngine;
 
 	[RequireComponent(typeof(TextMesh))]
-	[RequireComponent(typeof(UnitManager))]
 	public class NamePlate : MonoBehaviour, INamePlate
 	{
 		public static UnitManager Target;
@@ -13,7 +12,23 @@
 
 		public string Name { set { identifier = value; } }
 
-		public Color Colour { set { if (text != null) { text.color = value; } } }
+		public Color Colour
+		{
+			set
+			{
+				if (text != null || GetTextMesh())
+				{
+					text.color = value;
+				}
+			}
+		}
+
+		private bool GetTextMesh()
+		{
+			text = GetComponent<TextMesh>();
+			if (text != null) { return true; }
+			return false;
+		}
 
 		void Start()
 		{

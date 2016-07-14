@@ -3,6 +3,7 @@
 	using UnityEngine.Networking;
 	using Player;
 	using System;
+	using Prop;
 
 	public class UnitManager : NetworkBehaviour
 	{
@@ -46,9 +47,24 @@
 			}
 		}
 
+		public Prop Prop
+		{
+			get
+			{
+				if (prop != null) { return prop; }
+				else
+				{
+					prop = GetComponentInChildren<Prop>();
+					if (prop != null) { return prop; }
+					throw new Exception("Prop not found.");
+				}
+			}
+		}
+
 		private IUnit unit;
 		private IMotor motor;
 		private INamePlate namePlate;
+		private Prop prop;
 
 		public override void OnStartAuthority()
 		{

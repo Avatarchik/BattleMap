@@ -8,8 +8,6 @@
 
 		Color Colour { get; set; }
 
-		void DeleteSelf();
-
 		float Circumference { get; }
 	}
 }

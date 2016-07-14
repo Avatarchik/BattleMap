@@ -18,7 +18,9 @@
 
 		private Transform cam;
 
+		[SyncVar]
 		private float distance = 0f;
+
 		private Vector3 previousPosition;
 		private Vector3 startTurnPosition;
 
@@ -96,26 +98,14 @@
 			inControl = false;
 		}
 
-		public void ResetTurn() { CmdResetTurn(); }
-
-		public void NewTurn() { CmdNewTurn(); }
-
-		[Command]
-		private void CmdResetTurn() { RpcResetTurn(); }
-
-		[ClientRpc]
-		private void RpcResetTurn()
+		public void ResetTurn()
 		{
 			transform.position = startTurnPosition;
 			previousPosition = startTurnPosition;
 			distance = 0f;
 		}
 
-		[Command]
-		private void CmdNewTurn() { RpcNewTurn(); }
-
-		[ClientRpc]
-		private void RpcNewTurn()
+		public void NewTurn()
 		{
 			startTurnPosition = transform.position;
 			previousPosition = transform.position;
