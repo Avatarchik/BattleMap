@@ -25,7 +25,10 @@
 			transform.localScale = new Vector3(radius * 2, 0.1f, radius * 2);
 			text.text = Mathf.RoundToInt(UnitsToFeet(radius)) + "ft.";
 			if (!hasAuthority) { return; }
-			radius += Input.GetAxisRaw("Mouse ScrollWheel") * 2;
+			if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
+			{
+				CmdSetRadius(Input.GetAxisRaw("Mouse ScrollWheel") * 2);
+			}
 
 			RaycastHit hit;
 			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),
@@ -46,6 +49,12 @@
 		void CmdDeleteSelf()
 		{
 			NetworkServer.Destroy(gameObject);
+		}
+
+		[Command]
+		void CmdSetRadius(float ChangeAmount)
+		{
+			radius += ChangeAmount;
 		}
 	}
 
