@@ -89,7 +89,7 @@
 				{
 					spawning.transform.position = hit.point.Round(1f);
 				}
-				if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift))
+				if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftAlt))
 				{
 					CmdSpawnObject(spawning.name, 
 						spawning.transform.position.x, 
@@ -104,8 +104,7 @@
 				return;
 			}
 
-			if (Input.GetKey(KeyCode.LeftShift) &&
-				Input.GetKey(KeyCode.LeftAlt))
+			if (Input.GetKey(KeyCode.LeftAlt))
 			{
 				if (Input.GetKeyDown(KeyCode.Delete))
 				{

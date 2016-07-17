@@ -8,7 +8,7 @@
 		TextMesh text;
 
 		[SyncVar]
-		float radius = 1;
+		float radius = 1f;
 
 		void Start()
 		{
@@ -55,6 +55,7 @@
 		void CmdSetRadius(float ChangeAmount)
 		{
 			radius += ChangeAmount;
+			if (radius < 1f) radius = 1f;
 		}
 	}
 

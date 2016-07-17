@@ -34,7 +34,14 @@
 
 		public Vector3 Movement { set { velocity = value; velocity.y = 0f; } }
 		public Vector3 Rotation { set { rotation = value; } }
-		float IMotor.Zoom { set { zoom += value; } }
+		float IMotor.Zoom
+		{
+			set
+			{
+				zoom += value;
+				if (zoom < 0f) { zoom = 0f; }
+			}
+		}
 		bool IMotor.InControl { get { return inControl; } }
 		public float DistanceTraveled { get { return distance; } }
 

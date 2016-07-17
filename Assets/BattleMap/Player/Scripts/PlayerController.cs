@@ -55,7 +55,8 @@
 			// calculate movement velocity
 			float xMov = Input.GetAxisRaw("Horizontal");
 			float zMov = Input.GetAxisRaw("Vertical");
-			float upMov = Convert.ToSingle(Input.GetKey(KeyCode.Space));
+			float upMov = Convert.ToSingle(Input.GetKey(KeyCode.Space)) -
+				Convert.ToSingle(Input.GetKey(KeyCode.LeftShift));
 
 			// check camera zoom
 			float zoom = Input.GetAxisRaw("Mouse ScrollWheel");

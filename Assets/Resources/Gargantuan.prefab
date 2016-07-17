@@ -45,9 +45,9 @@ GameObject:
   - 114: {fileID: 11432560}
   - 114: {fileID: 11484256}
   - 114: {fileID: 11468916}
-  - 114: {fileID: 11475960}
+  - 114: {fileID: 11445218}
   m_Layer: 0
-  m_Name: 2.5.Tiny
+  m_Name: Gargantuan
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 131508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 474544}
@@ -631,6 +631,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7b8672a603e4f4e934c7df540253b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11445218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0bdb2f82eabdb498886d0f18115182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11468916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -656,35 +667,24 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 36
-    i1: 238
-    i2: 150
-    i3: 163
-    i4: 96
-    i5: 70
-    i6: 236
-    i7: 180
-    i8: 186
-    i9: 200
-    i10: 34
-    i11: 86
-    i12: 49
-    i13: 84
-    i14: 170
-    i15: 26
+    i0: 245
+    i1: 168
+    i2: 111
+    i3: 145
+    i4: 220
+    i5: 20
+    i6: 102
+    i7: 116
+    i8: 25
+    i9: 233
+    i10: 44
+    i11: 123
+    i12: 98
+    i13: 144
+    i14: 159
+    i15: 153
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &11475960
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0bdb2f82eabdb498886d0f18115182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11477590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.1
+  m_SendInterval: 0.11111111
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0

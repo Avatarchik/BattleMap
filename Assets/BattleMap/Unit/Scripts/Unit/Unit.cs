@@ -41,12 +41,6 @@
 			colour = UserInterface.UnitColour;
 		}
 
-		private void OnNameChanged(string NewName)
-		{
-			FindObjectOfType<UserInterface>().ArrangeButtons();
-			namePlate.Name = NewName;
-		}
-
 		[Command]
 		private void CmdSetColour(Color newColor)
 		{
@@ -75,6 +69,19 @@
 
 				mat.color = newColor;
 				mat.SetColor("_EmissionColor", finalColor);
+			}
+		}
+
+		private void OnNameChanged(string NewName)
+		{
+			identifier = NewName;
+			var interfaces = FindObjectsOfType<UserInterface>();
+			foreach (var face in interfaces)
+			{
+				if (face.hasAuthority)
+				{
+					face.ArrangeButtons();
+				}
 			}
 		}
 

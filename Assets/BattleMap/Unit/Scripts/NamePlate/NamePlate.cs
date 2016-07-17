@@ -8,9 +8,6 @@
 		public static UnitManager Target;
 		private UnitManager manager;
 		private TextMesh text;
-		private string identifier;
-
-		public string Name { set { identifier = value; } }
 
 		public Color Colour
 		{
@@ -53,7 +50,7 @@
 
 			if (Target == null || manager.Motor.InControl)
 			{
-				text.text = "Name: " + identifier + "\n Traveled: " +
+				text.text = "Name: " + manager.Unit.Name + "\n Traveled: " +
 					Mathf.RoundToInt(UnitsToFeet(manager.Motor.DistanceTraveled)) + "ft.";
 				return;
 			}
@@ -78,7 +75,7 @@
 			distance -= UnitsToFeet(manager.Unit.Circumference / 2);
 			distance += 5.0f;
 
-			text.text = "Name: " + identifier +  "\n Distance: " + 
+			text.text = "Name: " + manager.Unit.Name +  "\n Distance: " + 
 				Mathf.RoundToInt(distance) + "ft.\nTraveled: " + 
 				Mathf.RoundToInt(UnitsToFeet(manager.Motor.DistanceTraveled)) + "ft.";
 		}
